@@ -1,8 +1,8 @@
 const gameboard = (() => {
   let board = [
-    ["x", "", "o"],
-    ["", "x", "o"],
-    ["", "", "x"],
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
   ];
   const getBoard = () => board;
   const setBoard = (index, value) => {
@@ -81,19 +81,23 @@ const game = (() => {
     currentPlayer = player1;
   };
 
+  const handlePlayerMove = (cell) => {
+    if (isGameOver) return;
+    const rowIndex = cell.getAttribute("data-rowIndex");
+    const colIndex = cell.getAttribute("data-colIndex");
+    const board = gameboard.getBoard();
+    if (board[rowIndex][colIndex] !== "") return;
+    board[rowIndex][colIndex] = currentPlayer.getSymbol();
+    displayController.renderBoard();
+    checkWinner();
+    toggleCurrentPlayer();
+  };
+
+  // Initialize the game
   const init = () => {
-    const cells = document.querySelectorAll(".game__board__cell");
-    cells.forEach((cell, index) => {
-      cell.addEventListener("click", () => {
-        if (!isGameOver && !cell.textContent) {
-          gameboard.setBoard(index, currentPlayer.getSymbol());
-          displayController.renderBoard();
-          checkWinner();
-          if (!isGameOver) {
-            toggleCurrentPlayer();
-          }
-        }
-      });
+    const cells = document.querySelectorAll("[data-cell]");
+    cells.forEach((cell) => {
+      cell.addEventListener("click", () => handlePlayerMove(cell));
     });
   };
 
@@ -114,8 +118,12 @@ const displayController = (() => {
   const renderBoard = () => {
     const board = gameboard.getBoard();
     const cells = document.querySelectorAll(".game__board__cell");
-    cells.forEach((cell, index) => {
-      cell.textContent = board[Math.floor(index / 3)][index % 3];
+
+    // Loop through each cell and update its content based on the game board state
+    cells.forEach((cell) => {
+      const rowIndex = cell.getAttribute("data-rowIndex");
+      const colIndex = cell.getAttribute("data-colIndex");
+      cell.textContent = board[rowIndex][colIndex];
     });
   };
 
@@ -123,3 +131,4 @@ const displayController = (() => {
 })();
 
 displayController.renderBoard();
+game.init();
