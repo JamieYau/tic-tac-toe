@@ -14,6 +14,11 @@ body {
     align-items: center;
 }
 
+h1 {
+    font-size: 50px;
+    margin: 20px 0;
+}
+
 .game {
     display: flex;
     flex-direction: column;
