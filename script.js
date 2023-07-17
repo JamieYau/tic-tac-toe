@@ -81,6 +81,22 @@ const game = (() => {
     currentPlayer = player1;
   };
 
+  const init = () => {
+    const cells = document.querySelectorAll(".game__board__cell");
+    cells.forEach((cell, index) => {
+      cell.addEventListener("click", () => {
+        if (!isGameOver && !cell.textContent) {
+          gameboard.setBoard(index, currentPlayer.getSymbol());
+          displayController.renderBoard();
+          checkWinner();
+          if (!isGameOver) {
+            toggleCurrentPlayer();
+          }
+        }
+      });
+    });
+  };
+
   return {
     getWinner,
     getIsGameOver,
@@ -89,6 +105,7 @@ const game = (() => {
     toggleCurrentPlayer,
     checkWinner,
     resetGame,
+    init,
   };
 })();
 
