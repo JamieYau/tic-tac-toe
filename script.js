@@ -17,3 +17,16 @@ const gameboard = (() => {
   };
   return { getBoard, setBoard, resetBoard };
 })();
+
+//player factory
+const player = (name, symbol) => {
+  let isTurn = false;
+
+  const getName = () => name;
+  const getSymbol = () => symbol;
+  const isPlayerTurn = () => isTurn;
+  const toggleTurn = () => {
+    isTurn = !isTurn;
+  };
+  return { getName, getSymbol, isPlayerTurn, toggleTurn };
+};
