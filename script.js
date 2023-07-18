@@ -81,6 +81,8 @@ const game = (() => {
     isDraw = false;
     winner = null;
     currentPlayer = player1;
+    displayController.renderBoard();
+    displayController.renderWinner();
   };
 
   const handlePlayerMove = (cell) => {
@@ -101,6 +103,11 @@ const game = (() => {
     const cells = document.querySelectorAll("[data-cell]");
     cells.forEach((cell) => {
       cell.addEventListener("click", () => handlePlayerMove(cell));
+    });
+
+    const resetButton = document.querySelector(".game__restart");
+    resetButton.addEventListener("click", () => {
+      resetGame();
     });
   };
 
