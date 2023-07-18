@@ -54,6 +54,14 @@ h1 {
   cursor: pointer;
 }
 
+.game__board__cell.x {
+  color: var(--color-x);
+}
+
+.game__board__cell.o {
+  color: var(--color-o);
+}
+
 .game__status {
   height: 60px;
   padding: 10px;

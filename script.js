@@ -134,6 +134,12 @@ const displayController = (() => {
       const rowIndex = cell.getAttribute("data-rowIndex");
       const colIndex = cell.getAttribute("data-colIndex");
       cell.textContent = board[rowIndex][colIndex];
+      if (cell.textContent === "X") {
+        cell.classList.add("x");
+      }
+      if (cell.textContent === "O") {
+        cell.classList.add("o");
+      }
     });
   };
 
