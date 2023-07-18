@@ -1,8 +1,8 @@
 :root {
   --color-background: #c8c8c8;
   --color-board-border: #333333;
-  --color-x: #ff5733;
-  --color-o: #33ff57;
+  --color-x: #ff5233;
+  --color-o: #33a0ff;
   --color-reset-button-bg: #ff9898;
   --color-text: #000000;
 }
@@ -51,6 +51,11 @@ h1 {
   background-color: #ffffff;
   border: 1px solid var(--color-board-border);
   font-size: 100px;
+  cursor: default;
+  transition: color 0.3s ease-in-out;
+}
+
+.game__board__cell:not(.x):not(.o) {
   cursor: pointer;
 }
 
