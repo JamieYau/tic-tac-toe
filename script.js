@@ -47,6 +47,7 @@ const game = (() => {
     currentPlayer.toggleTurn();
     currentPlayer = currentPlayer === player1 ? player2 : player1;
   };
+
   const checkWinner = () => {
     const board = gameboard.getBoard();
     const winningCombinations = [
@@ -73,6 +74,7 @@ const game = (() => {
       isGameOver = true;
     }
   };
+
   const resetGame = () => {
     gameboard.resetBoard();
     isGameOver = false;
@@ -91,6 +93,7 @@ const game = (() => {
     displayController.renderBoard();
     checkWinner();
     toggleCurrentPlayer();
+    displayController.renderWinner();
   };
 
   // Initialize the game
@@ -127,8 +130,26 @@ const displayController = (() => {
     });
   };
 
-  return { renderBoard };
+  const renderWinner = () => {
+    const winner = game.getWinner();
+    const winnerDisplay = document.querySelector(".game__status");
+    if (winner) {
+      winnerDisplay.textContent = `${winner.getName()} wins!`;
+    } else if (game.getIsDraw()) {
+      winnerDisplay.textContent = "It's a draw!";
+    } else {
+      winnerDisplay.textContent = ""; // Clear the message if there's no winner or draw
+    }
+  };
+
+  // Initialize the display and attach click event listeners
+  const init = () => {
+    displayController.renderBoard();
+    game.init();
+  };
+
+  return { renderBoard, renderWinner, init };
 })();
 
-displayController.renderBoard();
-game.init();
+// Call the init function once when the page loads
+displayController.init();
