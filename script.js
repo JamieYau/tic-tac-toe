@@ -75,7 +75,7 @@ const game = (() => {
     }
   };
 
-  const resetGame = () => {
+  const resetGame = (cells) => {
     gameboard.resetBoard();
     isGameOver = false;
     isDraw = false;
@@ -111,7 +111,7 @@ const game = (() => {
 
     const resetButton = document.querySelector(".game__restart");
     resetButton.addEventListener("click", () => {
-      resetGame();
+      resetGame(cells);
     });
   };
 
@@ -155,7 +155,7 @@ const displayController = (() => {
 
   // Initialize the display and attach click event listeners
   const init = () => {
-    displayController.renderBoard();
+    renderBoard();
     game.init();
   };
 
