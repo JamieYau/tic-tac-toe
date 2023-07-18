@@ -81,6 +81,9 @@ const game = (() => {
     isDraw = false;
     winner = null;
     currentPlayer = player1;
+    cells.forEach((cell) => {
+      cell.classList.remove("x", "o");
+    });
     displayController.renderBoard();
     displayController.renderWinner();
   };
@@ -92,6 +95,7 @@ const game = (() => {
     const board = gameboard.getBoard();
     if (board[rowIndex][colIndex] !== "") return;
     board[rowIndex][colIndex] = currentPlayer.getSymbol();
+    cell.classList.add(currentPlayer.getSymbol().toLowerCase());
     displayController.renderBoard();
     checkWinner();
     toggleCurrentPlayer();
@@ -134,12 +138,6 @@ const displayController = (() => {
       const rowIndex = cell.getAttribute("data-rowIndex");
       const colIndex = cell.getAttribute("data-colIndex");
       cell.textContent = board[rowIndex][colIndex];
-      if (cell.textContent === "X") {
-        cell.classList.add("x");
-      }
-      if (cell.textContent === "O") {
-        cell.classList.add("o");
-      }
     });
   };
 
