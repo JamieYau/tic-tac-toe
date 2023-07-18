@@ -41,3 +41,16 @@ h1 {
     font-size: 30px;
     cursor: pointer;
 }
+
+.game__status {
+    height: 60px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.game__restart {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
