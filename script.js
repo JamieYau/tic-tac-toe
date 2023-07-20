@@ -33,8 +33,8 @@ const player = (name, symbol) => {
 
 //game module
 const game = (() => {
-  const player1 = player("Player 1", "X");
-  const player2 = player("Player 2", "O");
+  let player1 = player("Player 1", "X");
+  let player2 = player("Player 2", "O");
   let currentPlayer = player1;
   let isGameOver = false;
   let isDraw = false;
@@ -46,6 +46,13 @@ const game = (() => {
   const toggleCurrentPlayer = () => {
     currentPlayer.toggleTurn();
     currentPlayer = currentPlayer === player1 ? player2 : player1;
+  };
+
+  // Function to set the initial players at the beginning of the game
+  const setPlayers = (playerOne, playerTwo) => {
+    player1 = playerOne;
+    player2 = playerTwo;
+    currentPlayer = player1;
   };
 
   const checkWinner = () => {
@@ -121,6 +128,7 @@ const game = (() => {
     getIsDraw,
     getCurrentPlayer,
     toggleCurrentPlayer,
+    setPlayers,
     checkWinner,
     resetGame,
     init,
@@ -162,5 +170,34 @@ const displayController = (() => {
   return { renderBoard, renderWinner, init };
 })();
 
+// landingScreen module
+const landingScreen = (() => {
+  const startButton = document.getElementById("startButton");
+  const landingScreenContainer = document.querySelector(".landing__screen");
+  const player1Input = document.getElementById("player1");
+  const player2Input = document.getElementById("player2");
+
+  const startGame = () => {
+    const player1Name = player1Input.value || "Player 1";
+    const player2Name = player2Input.value || "Player 2";
+
+    const player1 = player(player1Name, "X");
+    const player2 = player(player2Name, "O");
+    game.setPlayers(player1, player2);
+
+    // Hide the landing screen and show the game board
+    landingScreenContainer.style.display = "none";
+  };
+
+  const init = () => {
+    startButton.addEventListener("click", startGame);
+  };
+
+  return { init };
+})();
+
 // Call the init function once when the page loads
-displayController.init();
+document.addEventListener("DOMContentLoaded", () => {
+  landingScreen.init();
+  displayController.init();
+});
