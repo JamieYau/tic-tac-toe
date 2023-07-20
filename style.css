@@ -17,13 +17,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--color-background);
   color: var(--color-text);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-size: 16px;
 }
 
-.landing__screen {
+.landing-screen-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,17 +28,17 @@ body {
   height: 100vh;
 }
 
-.landing__screen h1 {
+.landing-screen-container h1 {
   font-size: 40px;
   margin-bottom: 20px;
 }
 
-.landing__screen label,
-.landing__screen input {
+.landing-screen-container label,
+.landing-screen-container input {
   margin-bottom: 10px;
 }
 
-.landing__screen button {
+.landing-screen-container button {
   background-color: var(--color-reset-button-bg);
   color: var(--color-text);
   margin-top: 20px;
@@ -53,6 +50,14 @@ body {
 
 .landing__screen button:hover {
   background-color: #ff6666;
+}
+
+.game-container {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {

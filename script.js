@@ -173,7 +173,10 @@ const displayController = (() => {
 // landingScreen module
 const landingScreen = (() => {
   const startButton = document.getElementById("startButton");
-  const landingScreenContainer = document.querySelector(".landing__screen");
+  const landingScreenContainer = document.querySelector(
+    ".landing-screen-container"
+  );
+  const gameContainer = document.querySelector(".game-container");
   const player1Input = document.getElementById("player1");
   const player2Input = document.getElementById("player2");
 
@@ -187,6 +190,7 @@ const landingScreen = (() => {
 
     // Hide the landing screen and show the game board
     landingScreenContainer.style.display = "none";
+    gameContainer.style.display = "flex";
   };
 
   const init = () => {
