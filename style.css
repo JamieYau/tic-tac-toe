@@ -95,17 +95,28 @@ body {
   transition: border-color 0.3s ease-in-out;
 }
 
-.landing-screen-container button {
+#player1-container input:focus {
+  outline: none;
+  border-color: var(--color-x);
+}
+
+#player2-container input:focus {
+  outline: none;
+  border-color: var(--color-o);
+}
+
+#start-btn {
   background-color: var(--color-start-button-bg);
   color: var(--color-text);
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 20px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
-.landing-screen-container button:hover {
+#start-btn:hover {
   background-color: #37ff37;
 }
 

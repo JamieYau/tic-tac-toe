@@ -172,7 +172,7 @@ const displayController = (() => {
 
 // landingScreen module
 const landingScreen = (() => {
-  const startButton = document.getElementById("startButton");
+  const startButton = document.getElementById("start-btn");
   const landingScreenContainer = document.querySelector(
     ".landing-screen-container"
   );
