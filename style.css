@@ -1,9 +1,10 @@
 :root {
-  --color-background: #c8c8c8;
-  --color-board-border: #333333;
-  --color-x: #ff5233;
-  --color-o: #33a0ff;
+  --color-background: #f7fbff;
+  --color-board-border: #d4e2e5;
+  --color-x: #ff7900;
+  --color-o: #4dc2ff;
   --color-reset-button-bg: #ff9898;
+  --color-start-button-bg: #74fe74;
   --color-text: #000000;
 }
 
@@ -24,22 +25,34 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 100vh;
 }
 
 .landing-screen-container h1 {
-  font-size: 40px;
+  font-size: 80px;
+  margin: 40px;
+}
+
+.player-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 600px;
   margin-bottom: 20px;
 }
 
-.landing-screen-container label,
-.landing-screen-container input {
-  margin-bottom: 10px;
+.player-icon {
+  width: 150px;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .landing-screen-container button {
-  background-color: var(--color-reset-button-bg);
+  background-color: var(--color-start-button-bg);
   color: var(--color-text);
   margin-top: 20px;
   padding: 10px 20px;
@@ -48,8 +61,8 @@ body {
   transition: background-color 0.3s ease-in-out;
 }
 
-.landing__screen button:hover {
-  background-color: #ff6666;
+.landing-screen-container button:hover {
+  background-color: #37ff37;
 }
 
 .game-container {
@@ -60,7 +73,7 @@ body {
   align-items: center;
 }
 
-h1 {
+.game-container h1 {
   font-size: 50px;
   margin: 20px 0;
 }

@@ -8,11 +8,21 @@
   </head>
   <body>
     <div class="landing-screen-container">
-      <h1>Welcome to Tic-Tac-Toe</h1>
-      <label for="player1">Player 1 Name:</label>
-      <input type="text" id="player1" placeholder="Enter Player 1 Name" />
-      <label for="player2">Player 2 Name:</label>
-      <input type="text" id="player2" placeholder="Enter Player 2 Name" />
+      <h1>Tic-Tac-Toe</h1>
+      <div class="player-container">
+        <div id="player1-container" class="player">
+          <img class="player-icon" src="assets/player1.png" alt="p1 icon" />
+          <label for="player1">Player 1</label>
+          <input type="text" id="player1" placeholder="Enter Name" />
+        </div>
+        <div class="vs">VS</div>
+        <div id="player2-container" class="player">
+          <img class="player-icon" src="assets/player2.png" alt="p2 icon" />
+          <label for="player2">Player 2</label>
+          <input type="text" id="player2" placeholder="Enter Name" />
+        </div>
+      </div>
+
       <button id="startButton">Start Game</button>
     </div>
     <div class="game-container">
