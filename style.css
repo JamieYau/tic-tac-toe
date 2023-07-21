@@ -37,18 +37,62 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 600px;
-  margin-bottom: 20px;
+  gap: 80px;
+  margin: 40px;
+  padding: 60px 30px;
+  background-color: #eeeeee;
+  border: 3px solid var(--color-board-border);
+  border-radius: 10px;
 }
 
-.player-icon {
-  width: 150px;
+.vs {
+  font-size: 50px;
+  font-weight: bold;
 }
 
 .player {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 3px solid;
+  border-radius: 10px;
+}
+
+.player-icon {
+  width: 150px;
+}
+
+#player1-container {
+  border-color: var(--color-x);
+}
+
+#player2-container {
+  border-color: var(--color-o);
+}
+
+.player-container label {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+#player1-container label {
+  color: var(--color-x);
+}
+
+#player2-container label {
+  color: var(--color-o);
+}
+
+.player-container input {
+  padding: 10px 20px;
+  font-size: 20px;
+  text-align: center;
+  border: 3px solid var(--color-board-border);
+  border-radius: 10px;
+  transition: border-color 0.3s ease-in-out;
 }
 
 .landing-screen-container button {
