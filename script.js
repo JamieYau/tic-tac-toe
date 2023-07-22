@@ -223,10 +223,20 @@ const displayController = (() => {
     scoreTable.appendChild(tableBody);
   };
 
+  const toggleTable = () => {
+    const menuButton = document.getElementById("menu");
+    const table = document.querySelector(".score-table-container");
+    menuButton.addEventListener("click", () => {
+      console.log("clicked");
+      table.classList.toggle("hidden");
+    });
+  };
+
   // Initialize the display and attach click event listeners
   const init = () => {
     renderBoard();
     game.init();
+    toggleTable();
   };
 
   return {
@@ -234,6 +244,7 @@ const displayController = (() => {
     renderWinner,
     updateScoreboard,
     updateScoreTable,
+    toggleTable,
     init,
   };
 })();
