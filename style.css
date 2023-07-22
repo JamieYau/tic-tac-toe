@@ -124,6 +124,13 @@ body {
   background-color: #37ff37;
 }
 
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 20px;
+}
+
 .game-container {
   display: none;
   width: 100vw;
@@ -138,6 +145,8 @@ body {
 }
 
 .scoreboard {
+  grid-row: 1/2;
+  grid-column: 1/2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -146,7 +155,6 @@ body {
   background-color: #eeeeee;
   border: 3px solid var(--color-board-border);
   border-radius: 10px;
-  margin-bottom: 20px;
 }
 
 .scoreboard__player {
@@ -161,6 +169,8 @@ body {
 }
 
 .game {
+  grid-row: 2/3;
+  grid-column: 1/2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -220,4 +230,43 @@ body {
 
 .game__restart:hover {
   background-color: #ff6666;
+}
+
+.score-table-container {
+  grid-row: 1/3;
+  grid-column: 2/3;
+}
+
+table {
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--color-board-border);
+  border-radius: 10px;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #333;
+}
+
+thead {
+  background-color: #333;
+  color: #fff;
+}
+
+#p1-column {
+  background-color: var(--color-x);
+}
+
+#p2-column {
+  background-color: var(--color-o);
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
 }
