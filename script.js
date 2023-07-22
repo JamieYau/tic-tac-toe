@@ -119,6 +119,7 @@ const game = (() => {
     });
     displayController.renderBoard();
     displayController.renderWinner();
+    displayController.updateScoreboard();
   };
 
   const handlePlayerMove = (cell) => {
