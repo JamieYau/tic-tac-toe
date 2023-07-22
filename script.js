@@ -34,7 +34,14 @@ const player = (name, symbol) => {
     score++;
   };
 
-  return { getName, getSymbol, isPlayerTurn, toggleTurn, getScore, incrementScore };
+  return {
+    getName,
+    getSymbol,
+    isPlayerTurn,
+    toggleTurn,
+    getScore,
+    incrementScore,
+  };
 };
 
 //game module
@@ -45,12 +52,14 @@ const game = (() => {
   let isGameOver = false;
   let isDraw = false;
   let winner = null;
+  let round = 1;
 
   const getPlayer1 = () => player1;
   const getPlayer2 = () => player2;
   const getWinner = () => winner;
   const getIsGameOver = () => isGameOver;
   const getIsDraw = () => isDraw;
+  const getRound = () => round;
   const getCurrentPlayer = () => currentPlayer;
   const toggleCurrentPlayer = () => {
     currentPlayer.toggleTurn();
@@ -81,15 +90,21 @@ const game = (() => {
         winner = player1;
         isGameOver = true;
         player1.incrementScore();
+        displayController.updateScoreTable();
+        round++;
       } else if (combination.every((value) => value === "O")) {
         winner = player2;
         isGameOver = true;
         player2.incrementScore();
+        displayController.updateScoreTable();
+        round++;
       }
     });
     if (!board.flat().includes("") && !winner) {
       isDraw = true;
       isGameOver = true;
+      displayController.updateScoreTable();
+      round++;
     }
   };
 
@@ -140,6 +155,7 @@ const game = (() => {
     getWinner,
     getIsGameOver,
     getIsDraw,
+    getRound,
     getCurrentPlayer,
     toggleCurrentPlayer,
     setPlayers,
@@ -191,6 +207,18 @@ const displayController = (() => {
     const p2Column = document.getElementById("p2-column");
     p1Column.textContent = game.getPlayer1().getName();
     p2Column.textContent = game.getPlayer2().getName();
+
+    const round = game.getRound();
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${round}</td>
+      <td>${game.getPlayer1().getScore()}</td>
+      <td>${game.getIsDraw() ? "Draw" : ""}</td>
+      <td>${game.getPlayer2().getScore()}</td>
+    `;
+    const scoreTable = document.getElementById("score-table");
+    scoreTable.appendChild(row);
   };
 
   // Initialize the display and attach click event listeners
@@ -199,7 +227,13 @@ const displayController = (() => {
     game.init();
   };
 
-  return { renderBoard, renderWinner, updateScoreboard, updateScoreTable, init };
+  return {
+    renderBoard,
+    renderWinner,
+    updateScoreboard,
+    updateScoreTable,
+    init,
+  };
 })();
 
 // landingScreen module
@@ -226,7 +260,6 @@ const landingScreen = (() => {
 
     // Update the scoreboard + scoreTable
     displayController.updateScoreboard();
-    displayController.updateScoreTable();
   };
 
   const init = () => {
