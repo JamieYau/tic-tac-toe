@@ -162,6 +162,11 @@ body {
   border-radius: 10px;
 }
 
+.scoreboard .round {
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .scoreboard__player {
   display: flex;
   flex-direction: column;
