@@ -95,6 +95,10 @@ body {
   transition: border-color 0.3s ease-in-out;
 }
 
+.player-container input:focus::placeholder {
+  color: transparent;
+}
+
 #player1-container input:focus {
   outline: none;
   border-color: var(--color-x);
