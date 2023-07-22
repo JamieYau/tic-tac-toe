@@ -218,7 +218,9 @@ const displayController = (() => {
       <td>${game.getPlayer2().getScore()}</td>
     `;
     const scoreTable = document.getElementById("score-table");
-    scoreTable.appendChild(row);
+    const tableBody = scoreTable.querySelector("tbody");
+    tableBody.appendChild(row);
+    scoreTable.appendChild(tableBody);
   };
 
   // Initialize the display and attach click event listeners
