@@ -186,13 +186,20 @@ const displayController = (() => {
     player2Score.textContent = game.getPlayer2().getScore();
   };
 
+  const updateScoreTable = () => {
+    const p1Column = document.getElementById("p1-column");
+    const p2Column = document.getElementById("p2-column");
+    p1Column.textContent = game.getPlayer1().getName();
+    p2Column.textContent = game.getPlayer2().getName();
+  };
+
   // Initialize the display and attach click event listeners
   const init = () => {
     renderBoard();
     game.init();
   };
 
-  return { renderBoard, renderWinner, updateScoreboard, init };
+  return { renderBoard, renderWinner, updateScoreboard, updateScoreTable, init };
 })();
 
 // landingScreen module
@@ -217,8 +224,9 @@ const landingScreen = (() => {
     landingScreenContainer.style.display = "none";
     gameContainer.style.display = "flex";
 
-    // Update the scoreboard
+    // Update the scoreboard + scoreTable
     displayController.updateScoreboard();
+    displayController.updateScoreTable();
   };
 
   const init = () => {
