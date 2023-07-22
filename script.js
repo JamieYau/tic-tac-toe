@@ -200,6 +200,12 @@ const displayController = (() => {
     player2Name.textContent = game.getPlayer2().getName();
     player1Score.textContent = game.getPlayer1().getScore();
     player2Score.textContent = game.getPlayer2().getScore();
+
+    // Update the current player indicator
+
+    // update the round indicator
+    const roundIndicator = document.querySelector(".round");
+    roundIndicator.textContent = `Round ${game.getRound()}`;
   };
 
   const updateScoreTable = () => {
