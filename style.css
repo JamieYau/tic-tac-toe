@@ -15,7 +15,7 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: var(--color-background);
   color: var(--color-text);
   font-size: 16px;
@@ -229,6 +229,7 @@ body {
   padding: 10px 20px;
   font-size: 20px;
   cursor: pointer;
+  border-radius: 5px;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -238,7 +239,7 @@ body {
 
 .score-table-container {
   position: absolute;
-  top: 80px;
+  top: 100px;
   right: 20px;
   width: 600px;
 }
@@ -254,7 +255,8 @@ table {
 th,
 td {
   padding: 10px;
-  border: 1px solid #333;
+  border: 2px solid var(--color-board-border);
+  border-radius: 5px;
 }
 
 thead {
