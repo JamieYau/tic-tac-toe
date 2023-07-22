@@ -21,6 +21,7 @@ const gameboard = (() => {
 //player factory
 const player = (name, symbol) => {
   let isTurn = false;
+  let score = 0;
 
   const getName = () => name;
   const getSymbol = () => symbol;
@@ -28,7 +29,12 @@ const player = (name, symbol) => {
   const toggleTurn = () => {
     isTurn = !isTurn;
   };
-  return { getName, getSymbol, isPlayerTurn, toggleTurn };
+  const getScore = () => score;
+  const incrementScore = () => {
+    score++;
+  };
+
+  return { getName, getSymbol, isPlayerTurn, toggleTurn, getScore, incrementScore };
 };
 
 //game module
@@ -39,6 +45,9 @@ const game = (() => {
   let isGameOver = false;
   let isDraw = false;
   let winner = null;
+
+  const getPlayer1 = () => player1;
+  const getPlayer2 = () => player2;
   const getWinner = () => winner;
   const getIsGameOver = () => isGameOver;
   const getIsDraw = () => isDraw;
@@ -71,9 +80,11 @@ const game = (() => {
       if (combination.every((value) => value === "X")) {
         winner = player1;
         isGameOver = true;
+        player1.incrementScore();
       } else if (combination.every((value) => value === "O")) {
         winner = player2;
         isGameOver = true;
+        player2.incrementScore();
       }
     });
     if (!board.flat().includes("") && !winner) {
@@ -107,6 +118,7 @@ const game = (() => {
     checkWinner();
     toggleCurrentPlayer();
     displayController.renderWinner();
+    displayController.updateScoreboard();
   };
 
   // Initialize the game
@@ -123,6 +135,8 @@ const game = (() => {
   };
 
   return {
+    getPlayer1,
+    getPlayer2,
     getWinner,
     getIsGameOver,
     getIsDraw,
@@ -161,13 +175,24 @@ const displayController = (() => {
     }
   };
 
+  const updateScoreboard = () => {
+    const player1Name = document.getElementById("player1-name");
+    const player2Name = document.getElementById("player2-name");
+    const player1Score = document.getElementById("player1-score-value");
+    const player2Score = document.getElementById("player2-score-value");
+    player1Name.textContent = game.getPlayer1().getName();
+    player2Name.textContent = game.getPlayer2().getName();
+    player1Score.textContent = game.getPlayer1().getScore();
+    player2Score.textContent = game.getPlayer2().getScore();
+  };
+
   // Initialize the display and attach click event listeners
   const init = () => {
     renderBoard();
     game.init();
   };
 
-  return { renderBoard, renderWinner, init };
+  return { renderBoard, renderWinner, updateScoreboard, init };
 })();
 
 // landingScreen module
@@ -191,6 +216,9 @@ const landingScreen = (() => {
     // Hide the landing screen and show the game board
     landingScreenContainer.style.display = "none";
     gameContainer.style.display = "flex";
+
+    // Update the scoreboard
+    displayController.updateScoreboard();
   };
 
   const init = () => {
