@@ -192,6 +192,7 @@ const displayController = (() => {
   };
 
   const updateScoreboard = () => {
+    // Update the player names and scores
     const player1Name = document.getElementById("player1-name");
     const player2Name = document.getElementById("player2-name");
     const player1Score = document.getElementById("player1-score-value");
@@ -202,6 +203,15 @@ const displayController = (() => {
     player2Score.textContent = game.getPlayer2().getScore();
 
     // Update the current player indicator
+    const player1Indicator = document.getElementById("player1-indicator");
+    const player2Indicator = document.getElementById("player2-indicator");
+    if (game.getCurrentPlayer() === game.getPlayer1()) {
+      player1Indicator.classList.add("active");
+      player2Indicator.classList.remove("active");
+    } else {
+      player1Indicator.classList.remove("active");
+      player2Indicator.classList.add("active");
+    }
 
     // update the round indicator
     const roundIndicator = document.querySelector(".round");
