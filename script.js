@@ -216,31 +216,32 @@ const displayController = (() => {
     });
   };
 
+  // apply the transition effect to the cells and reset the game
+  const applyTransitionEffect = () => {
+    cells.forEach((cell) => {
+      cell.classList.add("transition-effect");
+    });
+    setTimeout(() => {
+      cells.forEach((cell) => {
+        cell.classList.remove("transition-effect");
+      });
+      game.resetGame(cells);
+    }, 4000);
+  };
+
   const renderWinner = () => {
     const winner = game.getWinner();
     const winnerDisplay = document.querySelector(".game__status");
     if (winner) {
       winnerDisplay.textContent = `${winner.getName()} wins!`;
-      cells.forEach((cell) => {
-        cell.classList.add("transition-effect");
-      });
       setTimeout(() => {
-        cells.forEach((cell) => {
-          cell.classList.remove("transition-effect");
-        });
-        game.resetGame(cells);
-      }, 3000);
+        applyTransitionEffect();
+      }, 1000); // start the transition effect after 1 second
     } else if (game.getIsDraw()) {
       winnerDisplay.textContent = "It's a draw!";
-      cells.forEach((cell) => {
-        cell.classList.add("transition-effect");
-      });
       setTimeout(() => {
-        cells.forEach((cell) => {
-          cell.classList.remove("transition-effect");
-        });
-        game.resetGame(cells);
-      }, 3000);
+        applyTransitionEffect();
+      }, 1000); // start the transition effect after 1 second
     } else {
       winnerDisplay.textContent = ""; // Clear the message if there's no winner or draw
     }
