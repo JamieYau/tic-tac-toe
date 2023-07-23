@@ -221,8 +221,14 @@ const displayController = (() => {
     const winnerDisplay = document.querySelector(".game__status");
     if (winner) {
       winnerDisplay.textContent = `${winner.getName()} wins!`;
+      setTimeout(() => {
+        game.resetGame(cells);
+      }, 3000);
     } else if (game.getIsDraw()) {
       winnerDisplay.textContent = "It's a draw!";
+      setTimeout(() => {
+        game.resetGame(cells);
+      }, 3000);
     } else {
       winnerDisplay.textContent = ""; // Clear the message if there's no winner or draw
     }
