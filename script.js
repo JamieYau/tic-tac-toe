@@ -221,12 +221,24 @@ const displayController = (() => {
     const winnerDisplay = document.querySelector(".game__status");
     if (winner) {
       winnerDisplay.textContent = `${winner.getName()} wins!`;
+      cells.forEach((cell) => {
+        cell.classList.add("transition-effect");
+      });
       setTimeout(() => {
+        cells.forEach((cell) => {
+          cell.classList.remove("transition-effect");
+        });
         game.resetGame(cells);
       }, 3000);
     } else if (game.getIsDraw()) {
       winnerDisplay.textContent = "It's a draw!";
+      cells.forEach((cell) => {
+        cell.classList.add("transition-effect");
+      });
       setTimeout(() => {
+        cells.forEach((cell) => {
+          cell.classList.remove("transition-effect");
+        });
         game.resetGame(cells);
       }, 3000);
     } else {
