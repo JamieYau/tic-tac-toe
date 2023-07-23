@@ -168,6 +168,18 @@ const game = (() => {
 
 //display module
 const displayController = (() => {
+  const player1Name = document.getElementById("player1-name");
+  const player2Name = document.getElementById("player2-name");
+  const player1Score = document.getElementById("player1-score-value");
+  const player2Score = document.getElementById("player2-score-value");
+  const player1Indicator = document.getElementById("player1-indicator");
+  const player2Indicator = document.getElementById("player2-indicator");
+  const roundIndicator = document.querySelector(".round");
+  const p1Column = document.getElementById("p1-column");
+  const p2Column = document.getElementById("p2-column");
+  const scoreTable = document.getElementById("score-table");
+  const tableBody = scoreTable.querySelector("tbody");
+
   const renderBoard = () => {
     const board = gameboard.getBoard();
     const cells = document.querySelectorAll(".game__board__cell");
@@ -194,18 +206,12 @@ const displayController = (() => {
 
   const updateScoreboard = () => {
     // Update the player names and scores
-    const player1Name = document.getElementById("player1-name");
-    const player2Name = document.getElementById("player2-name");
-    const player1Score = document.getElementById("player1-score-value");
-    const player2Score = document.getElementById("player2-score-value");
     player1Name.textContent = game.getPlayer1().getName();
     player2Name.textContent = game.getPlayer2().getName();
     player1Score.textContent = game.getPlayer1().getScore();
     player2Score.textContent = game.getPlayer2().getScore();
 
     // Update the current player indicator
-    const player1Indicator = document.getElementById("player1-indicator");
-    const player2Indicator = document.getElementById("player2-indicator");
     if (game.getCurrentPlayer() === game.getPlayer1()) {
       player1Indicator.classList.add("active");
       player2Indicator.classList.remove("active");
@@ -215,18 +221,14 @@ const displayController = (() => {
     }
 
     // update the round indicator
-    const roundIndicator = document.querySelector(".round");
     roundIndicator.textContent = `Round ${game.getRound()}`;
   };
 
   const updateScoreTable = () => {
-    const p1Column = document.getElementById("p1-column");
-    const p2Column = document.getElementById("p2-column");
     p1Column.textContent = game.getPlayer1().getName();
     p2Column.textContent = game.getPlayer2().getName();
 
     const round = game.getRound();
-
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${round}</td>
@@ -234,8 +236,6 @@ const displayController = (() => {
       <td>${game.getIsDraw() ? "Draw" : ""}</td>
       <td>${game.getPlayer2().getScore()}</td>
     `;
-    const scoreTable = document.getElementById("score-table");
-    const tableBody = scoreTable.querySelector("tbody");
     tableBody.appendChild(row);
     scoreTable.appendChild(tableBody);
   };
