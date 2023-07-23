@@ -239,6 +239,14 @@ body {
   color: var(--color-o);
 }
 
+.game__board__cell.hovered-cell-x {
+  background-color: #ffdcbd;
+}
+
+.game__board__cell.hovered-cell-o {
+  background-color: #c9f5ff;
+}
+
 .game__status {
   display: flex;
   justify-content: center;

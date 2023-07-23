@@ -130,6 +130,9 @@ const game = (() => {
     if (board[rowIndex][colIndex] !== "") return;
     board[rowIndex][colIndex] = currentPlayer.getSymbol();
     cell.classList.add(currentPlayer.getSymbol().toLowerCase());
+    cell.classList.remove(
+      `hovered-cell-${currentPlayer.getSymbol().toLowerCase()}`
+    );
     displayController.renderBoard();
     checkWinner();
     toggleCurrentPlayer();
@@ -168,6 +171,7 @@ const game = (() => {
 
 //display module
 const displayController = (() => {
+  const cells = document.querySelectorAll(".game__board__cell");
   const player1Name = document.getElementById("player1-name");
   const player2Name = document.getElementById("player2-name");
   const player1Score = document.getElementById("player1-score-value");
@@ -182,13 +186,33 @@ const displayController = (() => {
 
   const renderBoard = () => {
     const board = gameboard.getBoard();
-    const cells = document.querySelectorAll(".game__board__cell");
 
     // Loop through each cell and update its content based on the game board state
     cells.forEach((cell) => {
       const rowIndex = cell.getAttribute("data-rowIndex");
       const colIndex = cell.getAttribute("data-colIndex");
       cell.textContent = board[rowIndex][colIndex];
+    });
+
+    // Add the hover effect to the cells
+    cells.forEach((cell) => {
+      cell.addEventListener("mouseenter", () => {
+        // Check if the cell is not already marked with 'X' or 'O'
+        if (!cell.classList.contains("x") && !cell.classList.contains("o")) {
+          const currentPlayerSymbol = game
+            .getCurrentPlayer()
+            .getSymbol()
+            .toLowerCase();
+          cell.classList.add(`hovered-cell-${currentPlayerSymbol}`);
+        }
+      });
+      cell.addEventListener("mouseleave", () => {
+        const currentPlayerSymbol = game
+          .getCurrentPlayer()
+          .getSymbol()
+          .toLowerCase();
+        cell.classList.remove(`hovered-cell-${currentPlayerSymbol}`);
+      });
     });
   };
 
@@ -244,7 +268,6 @@ const displayController = (() => {
     const menuButton = document.getElementById("menu");
     const table = document.querySelector(".score-table-container");
     menuButton.addEventListener("click", () => {
-      console.log("clicked");
       table.classList.toggle("hidden");
     });
   };
